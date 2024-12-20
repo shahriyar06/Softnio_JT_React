@@ -23,24 +23,11 @@ This is an e-commerce app for a classy modern smart watch that allows users to v
 
 
 
-Installation
+## Installation
 Clone the repository to your local machine.
 
-bash
-Copy code
-git clone https://github.com/shahriyar06/Softnio_JT_React.git
-Navigate to the project directory.
+- git clone https://github.com/shahriyar06/Softnio_JT_React.git
 
-bash
-Copy code
-cd classy-modern-smart-watch
-Install dependencies.
+- npm install
 
-bash
-Copy code
-npm install
-Start the development server.
-
-bash
-Copy code
-npm start
+- npm run dev
