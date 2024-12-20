@@ -4,7 +4,7 @@ import black from "./../public/black.jpeg";
 import blue from "./../public/blue.jpeg";
 import Green from "./../public/Green.jpeg";
 import Purple from "./../public/Purple.jpeg";
-import { FaRegStar, FaRegStarHalfStroke, FaStar } from "react-icons/fa6";
+import { FaRegHeart, FaRegStar, FaRegStarHalfStroke, FaStar } from "react-icons/fa6";
 
 function App() {
   const [mainImage, setMainImage] = useState(Purple);
@@ -119,12 +119,23 @@ function App() {
                 ].map(({ color, image }, index) => (
                   <button
                     key={index}
-                    className={`w-4 h-4 rounded-full`}
-                    style={{ backgroundColor: color }}
+                    className={`p-1 rounded-full flex items-center justify-center transition-all duration-200 ${currentColor === color ? "ring-2 ring-offset-2 ring-offset-white ring-[color]" : ""
+                      }`}
+                    style={{
+                      boxShadow: currentColor === color ? `0 0 0 3px ${color}` : "none",
+                    }}
                     onClick={() => handleColorChange(color, image)}
-                  ></button>
+                  >
+                    <div
+                      className="w-5 h-5 rounded-full"
+                      style={{
+                        backgroundColor: color,
+                      }}
+                    ></div>
+                  </button>
                 ))}
               </div>
+              {/* Wrist Size */}
               <div className="mt-3">
                 <label className="block text-gray-700 font-medium mb-2 text-start">Wrist Size:</label>
                 <div className="flex space-x-4">
@@ -136,11 +147,18 @@ function App() {
                   ].map(({ size, price }, index) => (
                     <button
                       key={index}
-                      className={`py-2 px-4 border rounded-lg size-button ${selectedSize === size ? "selected-size border-[#6576FF]" : ""}`}
+                      className={`py-2 px-4 border rounded-lg size-button ${selectedSize === size ? "border-[#6576FF]" : "border-gray-300"
+                        }`}
                       onClick={() => handleSizeChange(size, price)}
                       data-size={size}
                     >
-                      {size} <span className="text-[#8091A7] text-sm">${price}</span>
+                      <span
+                        className={`${selectedSize === size ? "text-[#6576FF]" : "text-black"
+                          }`}
+                      >
+                        {size}
+                      </span>{" "}
+                      <span className="text-[#8091A7] text-sm">${price}</span>
                     </button>
                   ))}
                 </div>
@@ -171,6 +189,7 @@ function App() {
               >
                 Add to Cart
               </button>
+              <FaRegHeart className='text-[#6576FF] text-2xl' />
             </div>
           </div>
         </div>
@@ -192,7 +211,7 @@ function App() {
               <h2 className="text-xl font-semibold text-gray-800 text-start">Your Cart</h2>
             </div>
             <div className="p-6">
-              <table className="w-full text-left text-[#8091A7]">
+              <table className="w-full text-center text-[#8091A7]">
                 <thead>
                   <tr>
                     <th className="py-2">Item</th>
@@ -220,7 +239,7 @@ function App() {
 
               <div className="mt-4 flex justify-between text-lg font-medium">
                 <span>Total</span>
-                <div className='flex gap-20 mr-10'>
+                <div className='flex gap-20 mr-6'>
                   <div>
                     {cart.reduce((totalQty, item) => totalQty + item.quantity, 0)}
                   </div>
